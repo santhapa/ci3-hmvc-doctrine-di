@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+use modules\welcome\models\Welcome;
+
+class Welcome_Controller extends MX_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,6 +22,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$welcome = new Welcome;
+		
+
 		$this->load->view('welcome_message');
 	}
 }
