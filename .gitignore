@@ -1,0 +1,10 @@
+#cache and log files
+*/logs/log-*.php
+!*/logs/index.html
+*/cache/*
+!*/cache/index.html
+!*/cache/.htaccess
+
+#composer vendor dependencies
+vendor
+composer.lock
