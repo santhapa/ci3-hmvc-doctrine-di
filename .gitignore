@@ -5,6 +5,9 @@
 !*/cache/index.html
 !*/cache/.htaccess
 
+application/proxies
+
+
 #composer vendor dependencies
 vendor
 composer.lock

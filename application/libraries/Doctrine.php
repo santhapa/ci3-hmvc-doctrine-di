@@ -6,6 +6,8 @@ use Doctrine\Common\ClassLoader,
     Doctrine\ORM\Configuration,
     Doctrine\ORM\EntityManager,
     Doctrine\Common\Cache\ArrayCache,
+    Doctrine\Common\Annotations\AnnotationReader,
+    Doctrine\ORM\Mapping\Driver\AnnotationDriver,
     Doctrine\DBAL\Logging\EchoSQLLogger,
     Doctrine\Common\EventManager,
     Gedmo\Timestampable\TimestampableListener,
@@ -31,17 +33,20 @@ class Doctrine {
 
         //A Doctrine Autoloader is needed to load the models
         // first argument of classloader is namespace and second argument is path
-        //register the doctrine on models
-        // setup models loading
+
+        // setup class loading
         $entitiesClassLoader = new ClassLoader('models', APPPATH);
         $entitiesClassLoader->register();
 
-        //register the doctrine on models of modules
         foreach (glob(APPPATH.'modules/*', GLOB_ONLYDIR) as $m) {
             $module = str_replace(APPPATH.'modules/', '', $m);
             $entitiesClassLoader = new ClassLoader($module, APPPATH.'modules');
             $entitiesClassLoader->register();
         }
+
+        $loader = new ClassLoader('Proxies', APPPATH.'Proxies');
+        $loader->register();
+
         // Set up Gedmo
         // $classLoader = new ClassLoader('Gedmo', APPPATH.'third_party');
         // $classLoader->register();
@@ -51,8 +56,7 @@ class Doctrine {
         // // sluggable
         // $evm->addEventSubscriber(new SluggableListener);
         // // tree
-        // $evm->addEventSubscriber(new TreeListener);
-
+        // $evm->addEventSubscriber(new TreeListener);  
 
         // Set up caches
         $config = new Configuration;
@@ -62,10 +66,17 @@ class Doctrine {
         $config->setMetadataDriverImpl($driverImpl);
         $config->setQueryCacheImpl($cache);
 
-        $config->setQueryCacheImpl($cache);
+        // Set up models
+        $reader = new AnnotationReader($cache);
+        // $reader->setDefaultAnnotationNamespace('Doctrine\ORM\Mapping\\');
+        $models = array(APPPATH.'models');
+        foreach (glob(APPPATH.'modules/*/models', GLOB_ONLYDIR) as $m)
+            array_push($models, $m);
+        $driver = new AnnotationDriver($reader, $models);
+        $config->setMetadataDriverImpl($driver);
 
         // Proxy configuration
-        $config->setProxyDir(APPPATH.'/models/proxies');
+        $config->setProxyDir(APPPATH.'/proxies');
         $config->setProxyNamespace('Proxies');
 
         // Set up logger

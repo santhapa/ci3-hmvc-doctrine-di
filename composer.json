@@ -6,7 +6,8 @@
 		"php": ">=5.2.4",
 		"doctrine/orm": "2.4.*",
 		"gedmo/doctrine-extensions": "2.4.2",
-		"symfony/console": "2.7.1"
+		"symfony/console": "2.7.1",
+		"doctrine/migrations": "1.0.x-dev"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"
