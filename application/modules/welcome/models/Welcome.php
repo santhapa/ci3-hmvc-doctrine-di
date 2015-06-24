@@ -6,6 +6,7 @@ namespace modules\welcome\models;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Entity
  * @ORM\Table(name="ci_welcome")
  */
 class Welcome

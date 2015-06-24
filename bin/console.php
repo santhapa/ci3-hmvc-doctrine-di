@@ -24,22 +24,10 @@ $cli = new Application();
 
 $cli->setHelperSet($helperSet);
 $cli->addCommands(array(
-		// new Doctrine\DBAL\Tools\Console\Command\ImportCommand(),
-		// new Doctrine\DBAL\Tools\Console\Command\ReservedWordsCommand(),
-		// new Doctrine\DBAL\Tools\Console\Command\RunSqlCommand(),
-		// new Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand(),
-		// new Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand(),
-		// new Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand(),
-		// new Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand(),
-		// new Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand(),
-		// new Doctrine\ORM\Tools\Console\Command\SchemaTool\CreateCommand(),
-		// new Doctrine\ORM\Tools\Console\Command\SchemaTool\DropCommand(),
-		// new Doctrine\ORM\Tools\Console\Command\SchemaTool\UpdateCommand()
-
 		// DBAL Commands
 		new \Doctrine\DBAL\Tools\Console\Command\RunSqlCommand(),
 	    new \Doctrine\DBAL\Tools\Console\Command\ImportCommand(),
-	    
+
 	    // ORM Commands
 	    new \Doctrine\ORM\Tools\Console\Command\ClearCache\MetadataCommand(),
 	    new \Doctrine\ORM\Tools\Console\Command\ClearCache\ResultCommand(),

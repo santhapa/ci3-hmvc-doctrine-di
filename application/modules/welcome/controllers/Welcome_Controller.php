@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use modules\welcome\models\Welcome;
+use welcome\models\Welcome;
 
 class Welcome_Controller extends MX_Controller {
 
@@ -22,9 +22,24 @@ class Welcome_Controller extends MX_Controller {
 	 */
 	public function index()
 	{
-		$welcome = new Welcome;
-		
+		$names = $this->doctrine->em->getRepository('\welcome\models\Welcome')->findAll();
 
-		$this->load->view('welcome_message');
+		$this->load->view('index', array('names'=> $names));
+	}
+	public function hey(){
+		die("hey");
+	}
+	public function add(){
+		$welcome = new Welcome();
+
+		if($this->input->post())
+		{
+			$welcome->setText($this->input->post('name'));
+			$em = $this->doctrine->em;
+			$em->persist($welcome);
+			$em->flush();
+			redirect('welcome/index');
+		}
+		return $this->load->view('add');
 	}
 }
