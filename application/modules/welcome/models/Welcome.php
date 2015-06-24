@@ -1,7 +1,5 @@
 <?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-namespace modules\welcome\models;
+namespace welcome\models;
 
 use Doctrine\ORM\Mapping as ORM;
 

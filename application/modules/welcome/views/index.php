@@ -5,3 +5,5 @@
 	}
 
 ?>
+
+<a href="<?=site_url('welcome/add')?>">Add</a>
