@@ -5,7 +5,10 @@
 !*/cache/index.html
 !*/cache/.htaccess
 
+
 application/proxies
+application/config/config.php
+application/config/database.php
 
 
 #composer vendor dependencies
