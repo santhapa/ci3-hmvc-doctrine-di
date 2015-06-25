@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 use welcome\models\Welcome;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class Welcome_Controller extends MX_Controller {
 
@@ -23,6 +24,14 @@ class Welcome_Controller extends MX_Controller {
 	public function index()
 	{
 		$names = $this->doctrine->em->getRepository('\welcome\models\Welcome')->findAll();
+
+		$container = new ContainerBuilder();
+		$container->register('welcome', 'welcome\manager\WelcomeManager');
+		
+		
+		$welcome = $container->get('welcome');
+		echo $welcome->echoHello();
+		echo '<br>';
 
 		$this->load->view('index', array('names'=> $names));
 	}
