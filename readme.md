@@ -13,6 +13,8 @@ The foundation project created with CodeIgniter 3.0. It integrates the Doctrine 
 
 This projects by default has been configured to use doctrine so, you can call `$this->doctrine->em` to get instance of entity manager and entity classes must be at `modules/module_name/models/` folder.
 
+You can access the console command from `bin/console`, explore and you will see the command to generate database tables from the entity class.
+
 ## Registering Services
 
 To register service inside modules, use `modules/module_name/services/services.yml` directory and do as of demo or go through Symfony dependency component.
