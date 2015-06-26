@@ -6,6 +6,6 @@ class WelcomeManager{
 
 	public function echoHello()
 	{
-		return "hello World";
+		return "hello WelcomeManager";
 	}
 }

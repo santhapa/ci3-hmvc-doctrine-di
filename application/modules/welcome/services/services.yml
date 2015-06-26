@@ -1,0 +1,3 @@
+services:
+    welcome:
+        class: welcome\manager\WelcomeManager
