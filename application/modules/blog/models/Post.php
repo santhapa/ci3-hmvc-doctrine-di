@@ -1,13 +1,13 @@
 <?php
-namespace welcome\models;
+namespace blog\models;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="ci_welcome")
+ * @ORM\Table(name="ci_post")
  */
-class Welcome
+class Post
 {
 	/**
      * @ORM\Id
@@ -19,18 +19,18 @@ class Welcome
 	 /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $text;
+    private $title;
 
     public function getId(){
     	return $this->id;
     }
 
-    public function setText($txt){
-    	$this->text = $txt;
+    public function setTitle($t){
+    	$this->title = $t;
     }
 
-    public function getText()
+    public function getTitle()
     {
-    	return $this->text;
+    	return $this->title;
     }
 }
